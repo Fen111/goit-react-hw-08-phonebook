@@ -8,17 +8,17 @@ export default function ContactList() {
   const { data: contacts } = useFetchContactsQuery();
   const filter = useSelector(getFilter);
 
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase()),
+  );
+
   return (
     <>
       {contacts && (
         <ul className={s.list}>
-          {contacts
-            .filter(contact =>
-              contact.name.toLowerCase().includes(filter.toLowerCase()),
-            )
-            .map(contact => (
-              <ContactListItem key={contact.id} {...contact} />
-            ))}
+          {filteredContacts.map(contact => (
+            <ContactListItem key={contact.id} {...contact} />
+          ))}
         </ul>
       )}
     </>

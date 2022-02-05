@@ -14,8 +14,7 @@ export default function ContactForm() {
   const { data: contacts } = useFetchContactsQuery();
   const [addContact] = useAddContactMutation();
 
-  const handleChange = event => {
-    const { name, value } = event.target;
+  const handleChange = ({ target: { name, value } }) => {
     if (name === 'name') setName(value);
     if (name === 'number') setNumber(value);
   };

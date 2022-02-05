@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import actions from './actions';
+import actions from './contacts-actions';
 
 const initialState = {
   contacts: {
