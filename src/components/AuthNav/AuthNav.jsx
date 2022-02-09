@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { Typography } from '@mui/material';
 import s from './AuthNav.module.css';
 
 export default function AuthNav() {
@@ -10,7 +11,9 @@ export default function AuthNav() {
         className={s.link}
         activeClassName={s.activeLink}
       >
-        Registration
+        <Typography variant="h5" component="h5">
+          Registration
+        </Typography>
       </NavLink>
       <NavLink
         to="/login"
@@ -18,7 +21,9 @@ export default function AuthNav() {
         className={s.link}
         activeClassName={s.activeLink}
       >
-        Log in
+        <Typography variant="h5" component="h5">
+          Log in
+        </Typography>
       </NavLink>
     </div>
   );

@@ -6,7 +6,7 @@ import {
   contactsActions,
 } from 'redux/contacts';
 import ContactListItem from 'components/ContactList/ContactListItem';
-import s from './ContactList.module.css';
+import List from '@mui/material/List';
 
 export default function ContactList() {
   const contacts = useSelector(contactsSelectors.getVisibleContacts);
@@ -22,11 +22,11 @@ export default function ContactList() {
   return (
     <>
       {contacts && (
-        <ul className={s.list}>
+        <List>
           {contacts.map(contact => (
             <ContactListItem key={contact.id} {...contact} />
           ))}
-        </ul>
+        </List>
       )}
     </>
   );

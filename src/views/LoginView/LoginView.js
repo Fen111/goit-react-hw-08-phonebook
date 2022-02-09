@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import Container from 'components/Container/Container';
+import {
+  Container,
+  Typography,
+  TextField,
+  FormControl,
+  Button,
+} from '@mui/material';
+
+import s from './LoginView.module.css';
 
 export default function LoginView() {
   const dispatch = useDispatch();
@@ -28,17 +36,23 @@ export default function LoginView() {
 
   return (
     <>
-      <Container>
-        <form
+      <Container className={s.container}>
+        <FormControl
           component="form"
+          sx={{
+            marginTop: '30px',
+          }}
           onSubmit={handleSubmit}
           autoComplete="off"
           variant="outlined"
           margin="normal"
         >
-          <h2>Log In</h2>
+          <Typography variant="h2" component="h2">
+            Log In
+          </Typography>
 
-          <input
+          <TextField
+            className={s.input}
             type="email"
             name="email"
             value={email}
@@ -49,7 +63,8 @@ export default function LoginView() {
             margin="normal"
           />
 
-          <input
+          <TextField
+            className={s.input}
             type="password"
             name="password"
             value={password}
@@ -60,10 +75,10 @@ export default function LoginView() {
             margin="normal"
           />
 
-          <button type="submit" variant="contained">
+          <Button type="submit" variant="contained" className={s.button}>
             Sign In
-          </button>
-        </form>
+          </Button>
+        </FormControl>
       </Container>
     </>
   );

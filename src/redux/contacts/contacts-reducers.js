@@ -5,8 +5,6 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
-  changeContactName,
-  changeContactNumber,
 } from './contacts-operations';
 import { changeFilter } from './contacts-actions';
 
@@ -26,15 +24,6 @@ const items = createReducer(initialState.contacts.items, {
   },
   [deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
-  [changeContactName.fulfilled]: (state, { payload }) =>
-    state.map(contact => (contact.id === payload.id ? payload : contact)),
-
-  [changeContactNumber.fulfilled]: (state, { payload }) =>
-    (state = state.map(contact =>
-      contact.id === payload.id
-        ? { ...contact, number: payload.number }
-        : contact,
-    )),
 });
 
 const loading = createReducer(initialState.contacts.loading, {
@@ -47,12 +36,6 @@ const loading = createReducer(initialState.contacts.loading, {
   [deleteContact.pending]: () => true,
   [deleteContact.fulfilled]: () => false,
   [deleteContact.rejected]: () => false,
-  [changeContactName.pending]: () => true,
-  [changeContactName.fulfilled]: () => false,
-  [changeContactName.rejected]: () => false,
-  [changeContactNumber.pending]: () => true,
-  [changeContactNumber.fulfilled]: () => false,
-  [changeContactNumber.rejected]: () => false,
 });
 
 const filter = createReducer(initialState.contacts.filter, {

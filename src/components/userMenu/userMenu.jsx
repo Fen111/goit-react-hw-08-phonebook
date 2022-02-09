@@ -1,21 +1,35 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelectors, authOperations } from 'redux/auth';
+import { IconButton, Typography } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import s from './UserMenu.module.css';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUserName);
 
   return (
-    <>
-      <h3>Welcome, {name}</h3>
-      <button
+    <div className={s.container}>
+      <Typography
+        variant="h5"
+        component="h5"
+        sx={{
+          padding: 1.5,
+          marginRight: 2,
+        }}
+      >
+        Welcome, {name}
+      </Typography>
+      <IconButton
         type="button"
         aria-label="logout"
-        color="secondary"
+        sx={{
+          background: 'transparent',
+        }}
         onClick={() => dispatch(authOperations.logOut())}
       >
-        Log out
-      </button>
-    </>
+        <LogoutIcon fontSize="large" />
+      </IconButton>
+    </div>
   );
 }

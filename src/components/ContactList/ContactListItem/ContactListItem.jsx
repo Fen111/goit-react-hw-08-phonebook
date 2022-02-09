@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from 'redux/contacts';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import s from './ContactListItem.module.css';
 
@@ -10,16 +15,21 @@ export default function ContactListItem({ name, number, id }) {
   const deleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
   return (
-    <li className={s.listItem}>
-      <p className={s.text}>
-        {name}: {number}
-      </p>
+    <div className={s.container}>
+      <ListItem className={s.listItem}>
+        <ListItemAvatar>
+          <Avatar>
+            <AccountCircleIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={name} secondary={number} />
+      </ListItem>
       <button
         className={s.itemButton}
         type="button"
         onClick={() => deleteContact(id)}
       />
-    </li>
+    </div>
   );
 }
 

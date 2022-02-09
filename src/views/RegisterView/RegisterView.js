@@ -1,15 +1,25 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import Container from 'components/Container/Container';
+import {
+  Container,
+  Typography,
+  TextField,
+  FormControl,
+  Button,
+} from '@mui/material';
+import s from './RegisterView.module.css';
 
-export default function LoginForm() {
+export default function RegisterView() {
   const dispatch = useDispatch();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
+      case 'name':
+        return setName(value);
       case 'email':
         return setEmail(value);
       case 'password':
@@ -21,24 +31,45 @@ export default function LoginForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
+    dispatch(authOperations.register({ name, email, password }));
+
+    setName('');
     setEmail('');
     setPassword('');
   };
 
   return (
     <>
-      <Container>
-        <form
+      <Container className={s.container}>
+        <FormControl
+          className={s.form}
           component="form"
           onSubmit={handleSubmit}
+          sx={{
+            marginTop: '30px',
+          }}
           autoComplete="off"
           variant="outlined"
           margin="normal"
         >
-          <h2>Log In</h2>
+          <Typography variant="h2" component="h2">
+            Registration
+          </Typography>
 
-          <input
+          <TextField
+            className={s.input}
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            id="outlined-name"
+            label="Name"
+            variant="outlined"
+            margin="normal"
+          />
+
+          <TextField
+            className={s.input}
             type="email"
             name="email"
             value={email}
@@ -46,10 +77,12 @@ export default function LoginForm() {
             id="outlined-email"
             label="Email"
             variant="outlined"
+            helpertext="We'll never share your email."
             margin="normal"
           />
 
-          <input
+          <TextField
+            className={s.input}
             type="password"
             name="password"
             value={password}
@@ -60,10 +93,10 @@ export default function LoginForm() {
             margin="normal"
           />
 
-          <button type="submit" variant="contained">
-            Sign In
-          </button>
-        </form>
+          <Button type="submit" variant="contained" className={s.button}>
+            Sign up
+          </Button>
+        </FormControl>
       </Container>
     </>
   );

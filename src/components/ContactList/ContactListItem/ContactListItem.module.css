@@ -1,20 +1,18 @@
-.listItem {
+.container {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  justify-content: center;
+  align-self: stretch;
 }
 
-.text {
-  margin-top: 0;
-  margin-bottom: 0;
+.listItem {
+  max-width: 300px;
 }
 
 .itemButton {
-  display: inline-block;
-  margin-left: 20px;
   width: 30px;
   height: 30px;
   border: 0;
+  margin-top: 20px;
   background-image: url('../../../icon/delete.svg');
   background-repeat: no-repeat;
   background-position: center;

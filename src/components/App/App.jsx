@@ -10,8 +10,8 @@ import AppBar from 'components/AppBar';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 import HomeView from 'views/HomeView';
-import RegisterView from 'views/RegisterView';
-import LoginView from 'views/LoginView';
+import RegisterView from 'views/RegisterView/RegisterView';
+import LoginView from 'views/LoginView/LoginView';
 import ContactsView from 'views/ContactsView';
 
 export default function App() {
