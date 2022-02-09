@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import {
-  useFetchContactsQuery,
-  useAddContactMutation,
-} from 'redux/contactsSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import s from './ContactForm.module.css';
 
 export default function ContactForm() {
+  const contacts = useSelector(contactsSelectors.getItems);
+  // const loading = useSelector(contactsSelectors.getLoader);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
-  const { data: contacts } = useFetchContactsQuery();
-  const [addContact] = useAddContactMutation();
+  const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'name') setName(value);
@@ -28,7 +26,7 @@ export default function ContactForm() {
       return;
     }
     toast.success('Contact added');
-    addContact({ name, number });
+    dispatch(contactsOperations.addContact({ name, number }));
   };
 
   const handleSubmit = event => {

@@ -3,13 +3,16 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import Container from 'components/Container/Container';
 
-export default function LoginView() {
+export default function RegisterForm() {
   const dispatch = useDispatch();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
+      case 'name':
+        return setName(value);
       case 'email':
         return setEmail(value);
       case 'password':
@@ -21,7 +24,9 @@ export default function LoginView() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
+    dispatch(authOperations.register({ name, email, password }));
+
+    setName('');
     setEmail('');
     setPassword('');
   };
@@ -36,7 +41,18 @@ export default function LoginView() {
           variant="outlined"
           margin="normal"
         >
-          <h2>Log In</h2>
+          <h2>Registration</h2>
+
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            id="outlined-name"
+            label="Name"
+            variant="outlined"
+            margin="normal"
+          />
 
           <input
             type="email"
@@ -46,6 +62,7 @@ export default function LoginView() {
             id="outlined-email"
             label="Email"
             variant="outlined"
+            helpertext="We'll never share your email."
             margin="normal"
           />
 
@@ -61,7 +78,7 @@ export default function LoginView() {
           />
 
           <button type="submit" variant="contained">
-            Sign In
+            Sign up
           </button>
         </form>
       </Container>

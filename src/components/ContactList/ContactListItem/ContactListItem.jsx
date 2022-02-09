@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
-import { useDeleteContactMutation } from 'redux/contactsSlice';
+import { useDispatch } from 'react-redux';
+import { contactsOperations } from 'redux/contacts';
 
 import s from './ContactListItem.module.css';
 
 export default function ContactListItem({ name, number, id }) {
-  const [deleteContact] = useDeleteContactMutation();
+  const dispatch = useDispatch();
+
+  const deleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
   return (
     <li className={s.listItem}>
@@ -22,5 +25,5 @@ export default function ContactListItem({ name, number, id }) {
 
 ContactListItem.propTypes = {
   name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 };

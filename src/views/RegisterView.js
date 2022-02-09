@@ -66,7 +66,7 @@ export default function RegisterView() {
             id="outlined-email"
             label="Email"
             variant="outlined"
-            helperText="We'll never share your email."
+            helpertext="We'll never share your email."
             margin="normal"
           />
 

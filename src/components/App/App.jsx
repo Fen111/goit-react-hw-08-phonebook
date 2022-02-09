@@ -1,31 +1,31 @@
-import React from 'react';
-// import React, { Suspense } from 'react';
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Switch } from 'react-router-dom';
-// import { authOperations, authSelectors } from 'redux/auth';
+import React, { Suspense } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Switch } from 'react-router-dom';
+
+import { authOperations, authSelectors } from '../../redux/auth';
 
 import Container from '../Container/Container';
 import AppBar from 'components/AppBar';
-// import PrivateRoute from 'components/PrivateRoute';
-// import PublicRoute from 'components/PublicRoute';
-// import HomeView from 'views/HomeView';
-// import RegisterView from 'views/RegisterView';
-// import LoginView from 'views/LoginView';
-// import ContactsView from 'views/ContactsView';
+import PrivateRoute from 'components/PrivateRoute';
+import PublicRoute from 'components/PublicRoute';
+import HomeView from 'views/HomeView';
+import RegisterView from 'views/RegisterView';
+import LoginView from 'views/LoginView';
+import ContactsView from 'views/ContactsView';
 
 export default function App() {
-  // const dispatch = useDispatch();
-  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingUser);
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingUser);
 
-  // useEffect(() => {
-  //   dispatch(authOperations.fetchCurrentUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <Container>
       <AppBar />
-      {/* {isFetchingCurrentUser ? (
+      {isFetchingCurrentUser ? (
         <h1>Downloading...</h1>
       ) : (
         <>
@@ -54,7 +54,7 @@ export default function App() {
             </Suspense>
           </Switch>
         </>
-      )} */}
+      )}
     </Container>
   );
 }

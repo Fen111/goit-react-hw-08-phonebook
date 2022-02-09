@@ -29,6 +29,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     return data;
   } catch (error) {
     alert('Unknown error. Try again');
+    throw new Error(error);
   }
 });
 

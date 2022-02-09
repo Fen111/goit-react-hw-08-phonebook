@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import Container from 'components/Container/Container';
 
-export default function LoginView() {
+export default function LoginForm() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

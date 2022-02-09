@@ -13,7 +13,9 @@ export default function UserMenu() {
         aria-label="logout"
         color="secondary"
         onClick={() => dispatch(authOperations.logOut())}
-      />
+      >
+        Log out
+      </button>
     </>
   );
 }

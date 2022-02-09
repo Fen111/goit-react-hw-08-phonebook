@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as contactsAPI from 'services/contacts-api';
+import * as contactsAPI from 'services/contactsApi';
 import axios from 'axios';
-import { successNotification } from 'helpers/notification';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
@@ -20,7 +19,7 @@ export const addContact = createAsyncThunk(
   async (contact, { rejectWithValue }) => {
     try {
       const data = await contactsAPI.addContact(contact);
-      successNotification('Contact added');
+      alert('Contact added');
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -44,7 +43,6 @@ export const changeContactName = createAsyncThunk(
   'contacts/changeContactName',
   async ({ id, value }) => {
     const { data } = await axios.patch(`/contacts/${id}`, { name: value });
-    console.log('data', data);
 
     return data;
   },
